@@ -13,7 +13,7 @@ RSpec.describe Link, :type => :model do
       end
 
       context "when params are present" do
-        it "returns 2 records when params equals 'new iphone'" do
+        it "returns 3 records when params equals 'new iphone'" do
           FactoryGirl.create :link, title: "new iphone 1"
           FactoryGirl.create :link, title: "new iphone 2"
           FactoryGirl.create :link, title: "new iphone 3"
