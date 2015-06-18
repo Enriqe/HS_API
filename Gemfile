@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.2.1"
+ruby "2.2.2"
 
 gem "versionist"
 gem "active_model_serializers", github: "rails-api/active_model_serializers", branch: "0-8-stable"
@@ -25,7 +25,7 @@ group :development, :test do
   gem "awesome_print"
   gem "factory_girl_rails"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.1.0"
+  gem "rspec-rails", "~> 3.2.2"
   gem "ffaker"
 end
 
@@ -33,6 +33,7 @@ end
 group :test do
   gem "database_cleaner"
   gem "shoulda-matchers"
+  gem "rspec-collection_matchers"
 end
 
 # Production and staging gems
