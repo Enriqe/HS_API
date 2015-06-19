@@ -84,4 +84,24 @@ RSpec.describe Api::V1::LinksController, :type => :controller do
 
     it { should respond_with 204 }
   end
+
+  describe "POST #create" do
+
+    it "render the link record if success" do
+      post :create, { link: {title: "Look mom I'm hacking", url: "http://imawesome.com"} }
+      #alternativa:
+      #post :create, link: FactoryGirl.attributes_for(:link)
+
+      link_response = JSON.parse(response.body, symbolize_names: true)
+      expect(link_response[:link][:title]).to eq "Look mom I'm hacking"
+      #alternative
+      #expect(link_response[:link]).to have_key(:title)
+    end
+
+    it "render errors if link not saved" do
+      post :create, { link: {title: "", url: "http://imawesome.com"} }
+      link_response = JSON.parse(response.body, symbolize_names: true)
+      expect(link_response[:link][:errors][:title]).to include I18n.t('errors.messages.blank')
+    end
+  end
 end
