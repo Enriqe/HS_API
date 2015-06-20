@@ -14,4 +14,11 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
       expect(json_response[:comments]).to have(4).items
     end
   end
+
+  describe "POST #create" do
+    before(:each) do
+      post :create, link_id: link.id,
+                    comment: { content: FFaker::HipsterIpsum.paragraph }
+    end
+  end
 end
