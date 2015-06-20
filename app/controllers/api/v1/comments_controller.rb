@@ -1,4 +1,4 @@
-class Api::V1::CommentsController < ApplicationController
+class Api::V1::CommentsController < Api::V1::BaseController
 
   def index
     #link = Link.find(params[:link_id])

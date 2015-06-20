@@ -16,11 +16,6 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
   end
 
   describe "POST #create" do
-<<<<<<< HEAD
-    before(:each) do
-      post :create, link_id: link.id,
-                    comment: { content: FFaker::HipsterIpsum.paragraph }
-=======
 
     context "when the record is valid" do
       before(:each) do
@@ -59,7 +54,6 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
       delete :destroy, id: comment.id
 
       expect(response.response_code).to be 204
->>>>>>> dev
     end
   end
 end
