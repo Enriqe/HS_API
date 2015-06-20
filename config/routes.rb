@@ -7,9 +7,11 @@ Rails.application.routes.draw do
                                              :value => "application/vnd.hsnews.com+json; version=1"},
                                              :defaults => {:format => :json}, :default => true) do
       resources :links, only: [:index, :show, :update, :destroy, :create] do
-        resources :comments, only: [:index]
+        resources :comments, only: [:index, :create]
         #links/:id/comments
       end
+
+      resources :comments, only: [:destroy]
     end
   end
 

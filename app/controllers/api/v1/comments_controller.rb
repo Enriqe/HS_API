@@ -4,4 +4,26 @@ class Api::V1::CommentsController < ApplicationController
     #link = Link.find(params[:link_id])
     render json: Comment.where(link_id: params[:link_id])
   end
+
+  def create
+    link = Link.find(params[:link_id])
+    comment = link.comments.build(comment_params)
+     if comment.save
+       render json: comment, status: :created #201
+     else
+       render json: { comment: { errors: comment.errors.messages } },
+                      status: :unprocessable_entity
+     end
+  end
+
+  def destroy
+    Comment.find(params[:id]).destroy
+    head :no_content
+  end
+
+  private
+
+    def comment_params
+      params.require(:comment).permit(:content)
+    end
 end
