@@ -13,6 +13,16 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
     it "renders a comments array" do
       expect(json_response[:comments]).to have(4).items
     end
+
+    it "responds with a 200 code" do
+      expect(response.response_code).to be 200
+    end
+
+    it "responds with a json" do
+      expect(response.content_type).to eq(Mime::JSON)
+    end
+    
+    it_behaves_like "paginated list"
   end
 
   describe "POST #create" do

@@ -13,6 +13,16 @@ RSpec.describe Api::V1::LinksController, :type => :controller do
       it "returns 4 records" do
        expect(json_response[:links]).to have(4).items #rspec-collection_matchers
       end
+
+      it "responds with a 200 code" do
+        expect(response.response_code).to be 200
+      end
+
+      it "responds with a json" do
+        expect(response.content_type).to eq(Mime::JSON)
+      end
+
+      it_behaves_like "paginated list"
    end
 
    context "when the search param is present" do
