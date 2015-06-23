@@ -14,6 +14,7 @@ gem "coffee-rails", "~> 4.1.0"
 gem "uglifier", ">= 1.3.0"
 gem "puma"
 gem "kaminari"
+gem "bcrypt"
 
 group :development do
   gem "spring"
