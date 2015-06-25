@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:destroy]
       resources :users, only: [:create]
       resources :sessions, only: [:create]
+      delete "sessions/sign_out" => "sessions#destroy"
     end
   end
 

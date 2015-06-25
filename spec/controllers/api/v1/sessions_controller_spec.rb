@@ -20,4 +20,12 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
       expect(json_response[:session]).to have_key(:errors)
     end
   end
+
+  describe "DELETE #destroy" do
+    before(:each) do
+      delete :destroy
+    end
+
+    it { should respond_with 204 }
+  end
 end
