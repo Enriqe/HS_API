@@ -1,4 +1,5 @@
 class Api::V1::SessionsController < Api::V1::BaseController
+  before_action :authenticate_with_token, only: [:destroy]
 
   def create
     # session: {
@@ -22,6 +23,8 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
 
   def destroy
+    current_user.generate_authentication_token!
+    current_user.save
     head :no_content
   end
 
