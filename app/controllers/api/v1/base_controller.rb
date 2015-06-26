@@ -2,6 +2,15 @@ class Api::V1::BaseController < ApplicationController
   protect_from_forgery with: :null_session
 
   protected
+    def authenticate!
+      authenticate_with_token || render_unauthorized
+    end
+
+    def render_unauthorized
+        self.headers['WWW-Authenticate'] = 'Token realm-"Application"'
+        render json: { errors: "Invalid session data" }, status: :unauthorized
+    end
+
     def authenticate_with_token
       authenticate_with_http_token do |token, options|
         #Token token = 67ygubjkn; email=email@example.com
@@ -10,9 +19,6 @@ class Api::V1::BaseController < ApplicationController
 
         if user && secure_token_compare(user.auth_token, token)
           @current_user = user
-        else
-          self.headers['WWW-Authenticate'] = 'Token realm-"Application"'
-          render json: { errors: "Invalid session data" }, status: :unauthorized
         end
       end
     end
